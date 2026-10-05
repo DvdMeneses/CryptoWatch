@@ -1,9 +1,3 @@
-//
-//  CoinViewModel.swift
-//  CryptoWatch
-//
-//  Created by NUT - NUCLEO DE TECNOLOGIA on 04/10/26.
-//
 import Foundation
 import SwiftData
 
@@ -98,8 +92,6 @@ class CoinViewModel {
             try? modelContext.save()
         }
     }
-
-    // MARK: - Alertas de preço
 
     func alert(for coin: Coin) -> PriceAlert? {
         guard let modelContext else { return nil }

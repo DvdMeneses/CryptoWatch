@@ -23,7 +23,7 @@ struct NotificationService {
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,
             content: content,
-            trigger: nil // nil = dispara imediatamente
+            trigger: nil
         )
 
         UNUserNotificationCenter.current().add(request) { error in

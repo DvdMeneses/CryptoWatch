@@ -1,10 +1,3 @@
-//
-//  Coin.swift
-//  CryptoWatch
-//
-//  Created by NUT - NUCLEO DE TECNOLOGIA on 04/10/26.
-//
-
 import Foundation
 
 

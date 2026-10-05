@@ -1,10 +1,3 @@
-//
-//  CoinService.swift
-//  CryptoWatch
-//
-//  Created by NUT - NUCLEO DE TECNOLOGIA on 04/10/26.
-//
-
 import Foundation
 
 enum CoinServiceError: LocalizedError {
@@ -31,9 +24,6 @@ private struct MarketChartResponse: Decodable {
     let prices: [[Double]]
 }
 
-/// Cache simples em memória, compartilhado entre todas as instâncias de
-/// CoinService (por isso `static`) — evita bater na API de novo pra pedidos
-/// repetidos da mesma moeda/período dentro de um curto intervalo.
 private actor HistoryCache {
     static let shared = HistoryCache()
     private var entries: [String: (points: [PricePoint], timestamp: Date)] = [:]
