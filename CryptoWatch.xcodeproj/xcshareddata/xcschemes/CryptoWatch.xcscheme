@@ -47,6 +47,16 @@
                ReferencedContainer = "container:CryptoWatch.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C5E4A71831AD2F6FE7B19089"
+               BuildableName = "CryptoWatchUITests.xctest"
+               BlueprintName = "CryptoWatchUITests"
+               ReferencedContainer = "container:CryptoWatch.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

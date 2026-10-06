@@ -141,6 +141,7 @@ struct CoinDetailView: View {
                             .foregroundStyle(.secondary)
                         TextField("0.00", text: $targetPriceText)
                             .keyboardType(.decimalPad)
+                            .accessibilityIdentifier("targetPriceField")
                     }
                     .padding(.horizontal, 12)
                     .padding(.vertical, 10)
