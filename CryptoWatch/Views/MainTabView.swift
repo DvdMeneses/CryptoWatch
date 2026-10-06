@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UserNotifications
 
 struct MainTabView: View {
     @Environment(\.modelContext) private var modelContext
@@ -29,6 +30,7 @@ struct MainTabView: View {
         }
         .preferredColorScheme(appTheme.colorScheme)
         .task {
+            UNUserNotificationCenter.current().delegate = ForegroundNotificationPresenter.shared
             viewModel.configure(modelContext: modelContext)
             await viewModel.loadCoins()
         }

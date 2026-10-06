@@ -1,9 +1,22 @@
 import Foundation
 import UserNotifications
 
+final class ForegroundNotificationPresenter: NSObject, UNUserNotificationCenterDelegate {
+    static let shared = ForegroundNotificationPresenter()
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.banner, .sound, .list])
+    }
+}
+
 struct NotificationService {
 
     func requestAuthorization() async -> Bool {
+        UNUserNotificationCenter.current().delegate = ForegroundNotificationPresenter.shared
         let center = UNUserNotificationCenter.current()
         let granted = (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
         print("[NotificationService] autorização concedida: \(granted)")
