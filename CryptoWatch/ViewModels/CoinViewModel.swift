@@ -8,6 +8,7 @@ class CoinViewModel {
     var isLoading: Bool = false
     var errorMessage: String?
     var favoriteIDs: Set<String> = []
+    var alertsByCoinID: [String: PriceAlert] = [:]
 
     private let coinsService = CoinService()
     private let notificationService = NotificationService()
@@ -26,6 +27,7 @@ class CoinViewModel {
     func configure(modelContext: ModelContext) {
         self.modelContext = modelContext
         loadFavoritesFromDisk()
+        loadAlertsFromDisk()
     }
 
     private func loadFavoritesFromDisk() {
@@ -33,6 +35,14 @@ class CoinViewModel {
         let descriptor = FetchDescriptor<FavoriteCoin>()
         if let saved = try? modelContext.fetch(descriptor) {
             favoriteIDs = Set(saved.map { $0.coinID })
+        }
+    }
+
+    private func loadAlertsFromDisk() {
+        guard let modelContext else { return }
+        let descriptor = FetchDescriptor<PriceAlert>()
+        if let saved = try? modelContext.fetch(descriptor) {
+            alertsByCoinID = Dictionary(uniqueKeysWithValues: saved.map { ($0.coinID, $0) })
         }
     }
 
@@ -94,12 +104,7 @@ class CoinViewModel {
     }
 
     func alert(for coin: Coin) -> PriceAlert? {
-        guard let modelContext else { return nil }
-        let targetID = coin.id
-        let descriptor = FetchDescriptor<PriceAlert>(
-            predicate: #Predicate { $0.coinID == targetID }
-        )
-        return try? modelContext.fetch(descriptor).first
+        alertsByCoinID[coin.id]
     }
 
     func setAlert(for coin: Coin, targetPrice: Double) async {
@@ -111,11 +116,15 @@ class CoinViewModel {
         }
         guard let modelContext else { return }
         removeAlert(for: coin)
-        modelContext.insert(PriceAlert(coinID: coin.id, coinName: coin.name, targetPrice: targetPrice))
+        let newAlert = PriceAlert(coinID: coin.id, coinName: coin.name, targetPrice: targetPrice)
+        modelContext.insert(newAlert)
         try? modelContext.save()
+        alertsByCoinID[coin.id] = newAlert
     }
 
     func removeAlert(for coin: Coin) {
+        print("[CoinViewModel] removeAlert(\(coin.name))")
+        alertsByCoinID[coin.id] = nil
         guard let modelContext else { return }
         let targetID = coin.id
         let descriptor = FetchDescriptor<PriceAlert>(
@@ -129,10 +138,9 @@ class CoinViewModel {
 
     private func checkPriceAlerts() {
         guard let modelContext else { return }
-        let descriptor = FetchDescriptor<PriceAlert>()
-        guard let alerts = try? modelContext.fetch(descriptor), !alerts.isEmpty else { return }
+        guard !alertsByCoinID.isEmpty else { return }
 
-        for alert in alerts {
+        for alert in alertsByCoinID.values {
             guard let coin = coins.first(where: { $0.id == alert.coinID }) else { continue }
             if coin.currentPrice >= alert.targetPrice {
                 print("[CoinViewModel] alerta disparado: \(coin.name) chegou em \(coin.currentPrice), alvo era \(alert.targetPrice)")
@@ -142,6 +150,7 @@ class CoinViewModel {
                     currentPrice: coin.currentPrice
                 )
                 modelContext.delete(alert)
+                alertsByCoinID[alert.coinID] = nil
             }
         }
         try? modelContext.save()
