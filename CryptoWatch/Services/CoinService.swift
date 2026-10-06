@@ -56,7 +56,12 @@ private actor CoinsCache {
     }
 }
 
-struct CoinService {
+protocol CoinServiceProtocol {
+    func fetchCoins() async throws -> [Coin]
+    func fetchPriceHistory(coinID: String, days: Int) async throws -> [PricePoint]
+}
+
+struct CoinService: CoinServiceProtocol {
 
     private func validate(_ response: URLResponse, context: String, data: Data) throws {
         guard let http = response as? HTTPURLResponse else { return }

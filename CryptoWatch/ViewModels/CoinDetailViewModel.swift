@@ -6,8 +6,12 @@ class CoinDetailViewModel {
     var isLoading: Bool = false
     var errorMessage: String?
 
-    private let coinService = CoinService()
+    private let coinService: CoinServiceProtocol
     private var currentRequestID = UUID()
+
+    init(coinService: CoinServiceProtocol = CoinService()) {
+        self.coinService = coinService
+    }
 
     func loadHistory(coinID: String, days: Int = 7) async {
         let requestID = UUID()

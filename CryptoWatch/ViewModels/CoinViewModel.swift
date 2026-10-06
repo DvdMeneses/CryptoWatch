@@ -10,9 +10,17 @@ class CoinViewModel {
     var favoriteIDs: Set<String> = []
     var alertsByCoinID: [String: PriceAlert] = [:]
 
-    private let coinsService = CoinService()
-    private let notificationService = NotificationService()
+    private let coinsService: CoinServiceProtocol
+    private let notificationService: NotificationServiceProtocol
     private var modelContext: ModelContext?
+
+    init(
+        coinsService: CoinServiceProtocol = CoinService(),
+        notificationService: NotificationServiceProtocol = NotificationService()
+    ) {
+        self.coinsService = coinsService
+        self.notificationService = notificationService
+    }
 
     var favoriteCoins: [Coin] {
         coins.filter { favoriteIDs.contains($0.id) }
@@ -120,6 +128,7 @@ class CoinViewModel {
         modelContext.insert(newAlert)
         try? modelContext.save()
         alertsByCoinID[coin.id] = newAlert
+        checkPriceAlerts()
     }
 
     func removeAlert(for coin: Coin) {

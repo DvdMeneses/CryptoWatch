@@ -6,19 +6,53 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2A956F6F840C17839F4E5A8A /* CoinViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3617495F29A5B63299DBBC16 /* CoinViewModelTests.swift */; };
+		98631ED49B97EEB6F449EB3A /* CoinDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3866399C1582149EE9BCF362 /* CoinDetailViewModelTests.swift */; };
+		ABA5269A9E8F952596B08923 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA1801161534F52E57A96F /* Mocks.swift */; };
+		C85D18EC293CB2734732F93A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B55B461DB556807309CB81E /* Foundation.framework */; };
+		E1BA13E46AA7363BE1FCF669 /* CoinDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805537FF9802C111E4F1BD9 /* CoinDecodingTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A2A837E404C8F5E2C36A8991 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A27D32E93072EF2700C46AAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A27D32F03072EF2700C46AAD;
+			remoteInfo = CryptoWatch;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		1805537FF9802C111E4F1BD9 /* CoinDecodingTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinDecodingTests.swift; sourceTree = "<group>"; };
+		3617495F29A5B63299DBBC16 /* CoinViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinViewModelTests.swift; sourceTree = "<group>"; };
+		3866399C1582149EE9BCF362 /* CoinDetailViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModelTests.swift; sourceTree = "<group>"; };
+		5B55B461DB556807309CB81E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		9BBA1801161534F52E57A96F /* Mocks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		A27D32F13072EF2700C46AAD /* CryptoWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCB4D0DE7FDFC9CCBAC910EC /* CryptoWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A27D32F33072EF2700C46AAD /* CryptoWatch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = CryptoWatch;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8D94B58D01595D841989EB81 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C85D18EC293CB2734732F93A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A27D32EE3072EF2700C46AAD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -29,11 +63,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		167441128D62674672F62B09 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				5B55B461DB556807309CB81E /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		2BC7A770308BA99BA5114FAC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				167441128D62674672F62B09 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		452B7922E8A00E906F92054F /* CryptoWatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				1805537FF9802C111E4F1BD9 /* CoinDecodingTests.swift */,
+				3866399C1582149EE9BCF362 /* CoinDetailViewModelTests.swift */,
+				3617495F29A5B63299DBBC16 /* CoinViewModelTests.swift */,
+				9BBA1801161534F52E57A96F /* Mocks.swift */,
+			);
+			name = CryptoWatchTests;
+			path = CryptoWatchTests;
+			sourceTree = "<group>";
+		};
 		A27D32E83072EF2700C46AAD = {
 			isa = PBXGroup;
 			children = (
 				A27D32F33072EF2700C46AAD /* CryptoWatch */,
 				A27D32F23072EF2700C46AAD /* Products */,
+				2BC7A770308BA99BA5114FAC /* Frameworks */,
+				452B7922E8A00E906F92054F /* CryptoWatchTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				A27D32F13072EF2700C46AAD /* CryptoWatch.app */,
+				DCB4D0DE7FDFC9CCBAC910EC /* CryptoWatchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,11 +129,27 @@
 				A27D32F33072EF2700C46AAD /* CryptoWatch */,
 			);
 			name = CryptoWatch;
-			packageProductDependencies = (
-			);
 			productName = CryptoWatch;
 			productReference = A27D32F13072EF2700C46AAD /* CryptoWatch.app */;
 			productType = "com.apple.product-type.application";
+		};
+		CF2038BD9CD20CF1B1CC38B8 /* CryptoWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC8F3AFBDA66EF7A64F96E60 /* Build configuration list for PBXNativeTarget "CryptoWatchTests" */;
+			buildPhases = (
+				EB78C81EB084BEA70809755D /* Sources */,
+				8D94B58D01595D841989EB81 /* Frameworks */,
+				7857A9D105F71C082B3580D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE42EBD83E70190D7DFCDA6C /* PBXTargetDependency */,
+			);
+			name = CryptoWatchTests;
+			productName = CryptoWatchTests;
+			productReference = DCB4D0DE7FDFC9CCBAC910EC /* CryptoWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -100,11 +181,19 @@
 			projectRoot = "";
 			targets = (
 				A27D32F03072EF2700C46AAD /* CryptoWatch */,
+				CF2038BD9CD20CF1B1CC38B8 /* CryptoWatchTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7857A9D105F71C082B3580D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A27D32EF3072EF2700C46AAD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,7 +211,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EB78C81EB084BEA70809755D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1BA13E46AA7363BE1FCF669 /* CoinDecodingTests.swift in Sources */,
+				98631ED49B97EEB6F449EB3A /* CoinDetailViewModelTests.swift in Sources */,
+				2A956F6F840C17839F4E5A8A /* CoinViewModelTests.swift in Sources */,
+				ABA5269A9E8F952596B08923 /* Mocks.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE42EBD83E70190D7DFCDA6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CryptoWatch;
+			target = A27D32F03072EF2700C46AAD /* CryptoWatch */;
+			targetProxy = A2A837E404C8F5E2C36A8991 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A27D32FA3072EF2700C46AAD /* Debug */ = {
@@ -310,6 +419,43 @@
 			};
 			name = Release;
 		};
+		C187C8592AAD1ECB55504A49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95CT8KWSG2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.David.CryptoWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoWatch";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB94F707C1781BECB2548F0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95CT8KWSG2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.David.CryptoWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoWatch";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -327,6 +473,15 @@
 			buildConfigurations = (
 				A27D32FD3072EF2700C46AAD /* Debug */,
 				A27D32FE3072EF2700C46AAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC8F3AFBDA66EF7A64F96E60 /* Build configuration list for PBXNativeTarget "CryptoWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C187C8592AAD1ECB55504A49 /* Release */,
+				CB94F707C1781BECB2548F0D /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

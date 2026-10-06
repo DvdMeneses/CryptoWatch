@@ -13,7 +13,12 @@ final class ForegroundNotificationPresenter: NSObject, UNUserNotificationCenterD
     }
 }
 
-struct NotificationService {
+protocol NotificationServiceProtocol {
+    func requestAuthorization() async -> Bool
+    func fireAlert(coinName: String, targetPrice: Double, currentPrice: Double)
+}
+
+struct NotificationService: NotificationServiceProtocol {
 
     func requestAuthorization() async -> Bool {
         UNUserNotificationCenter.current().delegate = ForegroundNotificationPresenter.shared

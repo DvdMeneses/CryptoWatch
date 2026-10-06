@@ -4,6 +4,7 @@ import UserNotifications
 
 struct MainTabView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
     @State private var viewModel = CoinViewModel()
     @AppStorage("appTheme") private var appThemeRaw: String = AppTheme.system.rawValue
 
@@ -33,6 +34,11 @@ struct MainTabView: View {
             UNUserNotificationCenter.current().delegate = ForegroundNotificationPresenter.shared
             viewModel.configure(modelContext: modelContext)
             await viewModel.loadCoins()
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                Task { await viewModel.loadCoins() }
+            }
         }
     }
 }
